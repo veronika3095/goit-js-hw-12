@@ -2,22 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="simplelightbox/dist/simple-lightbox.min.css" />
+    <title>Image Search App</title>
   </head>
   <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
-
-    <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
-    </main>
-
-    <load src="./partials/footer.html" />
-
+    <form class="search-form">
+      <input
+        class="input-text"
+        type="text"
+        name="query"
+        placeholder="Search for images..."
+      />
+      <button class="button-text" type="submit">Search</button>
+    </form>
+    <div class="loader hidden">Loading...</div>
+    <div class="gallery">
+      <!-- <a class="gallery-images" href="./images/image1.jpg"
+        ><img src="./images/thumbs/thumb1.jpg" alt="" title=""
+      /></a>
+      <a href="./images/image2.jpg"
+        ><img src="./images/thumbs/thumb2.jpg" alt="" title="Beautiful Image"
+      /></a> -->
+    </div>
+    <button class="load-more hidden">Load more</button>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
