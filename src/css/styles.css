@@ -107,7 +107,7 @@ button:hover {
   justify-content: center;
   gap: 24px;
   margin-left: 50px;
-
+  margin-bottom: 32px;
 }
 
 .gallery img {
@@ -167,4 +167,6 @@ button:hover {
       line-height: 150%;
       letter-spacing: 0.04em;
       color: #fff;
+
+      margin: 0 0 32px;
 }

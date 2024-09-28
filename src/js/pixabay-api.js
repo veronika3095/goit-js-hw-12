@@ -6,7 +6,7 @@ let page = 1;
 
 export const fetchImages = async (query) => {
     const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=15&page=${page}`;
-    
+
     try {
         const response = await axios.get(url);
         return response.data.hits;
@@ -16,7 +16,7 @@ export const fetchImages = async (query) => {
 };
 
 export const incrementPage = () => {
-    page++;
+    page += 1;
 };
 
 export const resetPage = () => {

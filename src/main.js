@@ -30,14 +30,21 @@ const loadImages = async () => {
     try {
         const images = await fetchImages(query);
         renderGallery(images);
-        loadMoreBtn.classList.remove('hidden');
+
+        if (images.length === 0) {
+            iziToast.error({ message: "Sorry, no images found." });
+            loadMoreBtn.classList.add('hidden');
+            return;
+        }
 
         if (images.length < 15) {
             loadMoreBtn.classList.add('hidden');
             iziToast.info({ message: "We're sorry, but you've reached the end of search results." });
+        } else {
+            loadMoreBtn.classList.remove('hidden');
         }
 
-        const galleryItemHeight = document.querySelector('.gallery-item').getBoundingClientRect().height;
+        const galleryItemHeight = document.querySelector('.gallery-item')?.getBoundingClientRect().height || 0;
         window.scrollBy({
             top: galleryItemHeight * 2,
             behavior: 'smooth',
@@ -47,3 +54,5 @@ const loadImages = async () => {
         iziToast.error({ message: "Error fetching images." });
     }
 };
+
+loadMoreBtn.style.marginBottom = '32px';

@@ -3,7 +3,8 @@ import SimpleLightbox from 'simplelightbox';
 
 export const renderGallery = (images) => {
     const gallery = document.querySelector('.gallery');
-    
+    gallery.innerHTML = ''; 
+
     if (images.length === 0) {
         iziToast.error({ message: "Sorry, no images found." });
         return;
@@ -23,11 +24,11 @@ export const renderGallery = (images) => {
         </div>
     `).join('');
 
-    gallery.innerHTML += markup;
+    gallery.innerHTML = markup;
 
     const lightbox = new SimpleLightbox('.gallery a', {
         captionDelay: 250,
-        captionsData: 'alt', 
+        captionsData: 'alt',
     });
 
     lightbox.refresh();
