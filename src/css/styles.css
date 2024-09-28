@@ -170,3 +170,7 @@ button:hover {
 
       margin: 0 0 32px;
 }
+
+.load-more .hidden { 
+display: none;
+}
