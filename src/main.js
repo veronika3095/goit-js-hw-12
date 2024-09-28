@@ -9,6 +9,7 @@ loadMoreBtn.classList.add('load-more', 'hidden');
 document.body.appendChild(loadMoreBtn);
 
 let query = '';
+let currentImages = []; 
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -18,6 +19,7 @@ searchForm.addEventListener('submit', async (event) => {
 
     resetPage();
     loadMoreBtn.classList.add('hidden');
+    currentImages = []; 
     await loadImages();
 });
 
@@ -29,13 +31,18 @@ loadMoreBtn.addEventListener('click', async () => {
 const loadImages = async () => {
     try {
         const images = await fetchImages(query);
-        renderGallery(images);
-
+        
         if (images.length === 0) {
             iziToast.error({ message: "Sorry, no images found." });
             loadMoreBtn.classList.add('hidden');
             return;
         }
+
+        
+        currentImages = [...currentImages, ...images];
+
+        
+        renderGallery(currentImages);
 
         if (images.length < 15) {
             loadMoreBtn.classList.add('hidden');
