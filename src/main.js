@@ -8,6 +8,7 @@ loadMoreBtn.textContent = "Load more";
 loadMoreBtn.classList.add('load-more', 'hidden');
 document.body.appendChild(loadMoreBtn);
 
+const loader = document.querySelector('.loader'); 
 let query = '';
 let currentImages = [];
 
@@ -30,6 +31,7 @@ loadMoreBtn.addEventListener('click', async () => {
 
 const loadImages = async () => {
     try {
+        loader.classList.remove('hidden'); 
         const images = await fetchImages(query);
         
         if (images.length === 0) {
@@ -56,6 +58,8 @@ const loadImages = async () => {
     } catch (error) {
         console.error(error);
         iziToast.error({ message: "Error fetching images." });
+    } finally {
+        loader.classList.add('hidden'); 
     }
 };
 
