@@ -9,7 +9,7 @@ loadMoreBtn.classList.add('load-more', 'hidden');
 document.body.appendChild(loadMoreBtn);
 
 let query = '';
-let currentImages = []; 
+let currentImages = [];
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -38,10 +38,7 @@ const loadImages = async () => {
             return;
         }
 
-        
         currentImages = [...currentImages, ...images];
-
-        
         renderGallery(currentImages);
 
         if (images.length < 15) {
