@@ -8,7 +8,7 @@ loadMoreBtn.textContent = "Load more";
 loadMoreBtn.classList.add('load-more', 'hidden');
 document.body.appendChild(loadMoreBtn);
 
-const loader = document.querySelector('.loader'); 
+const loader = document.querySelector('.loader');
 let query = '';
 let currentImages = [];
 
@@ -34,6 +34,11 @@ const loadImages = async () => {
         loader.classList.remove('hidden'); 
         const images = await fetchImages(query);
         
+        
+        if (currentImages.length === 0) {
+            document.querySelector('.gallery').innerHTML = ''; 
+        }
+
         if (images.length === 0) {
             iziToast.error({ message: "Sorry, no images found." });
             loadMoreBtn.classList.add('hidden');
