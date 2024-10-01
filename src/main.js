@@ -40,7 +40,7 @@ const loadImages = async () => {
         }
 
         if (images.length === 0) {
-            iziToast.error({ message: "Sorry, no images found." });
+            iziToast.error({ message: "Sorry, there are no images matching your search query. Please try again!" });
             loadMoreBtn.classList.add('hidden');
             return;
         }
