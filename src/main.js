@@ -16,7 +16,10 @@ searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     query = searchForm.elements.query.value.trim();
 
-    if (!query) return;
+    if (!query) {
+        iziToast.error({ message: "Sorry, there are no images matching your search query. Please try again!" });
+        return;
+    }
 
     resetPage();
     loadMoreBtn.classList.add('hidden');
@@ -31,10 +34,10 @@ loadMoreBtn.addEventListener('click', async () => {
 
 const loadImages = async () => {
     try {
-        loader.classList.remove('hidden'); 
+        loader.classList.remove('hidden'); // Показуємо завантажувач
         const images = await fetchImages(query);
         
-        
+        // Очищуємо галерею перед відображенням нових зображень
         if (currentImages.length === 0) {
             document.querySelector('.gallery').innerHTML = ''; 
         }
@@ -64,7 +67,7 @@ const loadImages = async () => {
         console.error(error);
         iziToast.error({ message: "Error fetching images." });
     } finally {
-        loader.classList.add('hidden'); 
+        loader.classList.add('hidden'); // Приховуємо завантажувач
     }
 };
 
