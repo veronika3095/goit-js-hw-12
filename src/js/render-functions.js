@@ -13,12 +13,12 @@ export const renderGallery = (images) => {
     gallery.innerHTML = ''; 
 
     if (images.length === 0) {
-        iziToast.error({ message: "Sorry, no images found." });
+        iziToast.error({ message: "Sorry, there are no images matching your search query. Please try again!" });
         return;
     }
 
-    const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => 
-        `<div class="gallery-item">
+    const markup = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) =>
+        `<li class="gallery-item">
             <a href="${largeImageURL}" class="gallery-link">
                 <img src="${webformatURL}" alt="${tags}" />
             </a>
@@ -28,9 +28,11 @@ export const renderGallery = (images) => {
                 <span>Comments: ${comments}</span>
                 <span>Downloads: ${downloads}</span>
             </div>
-        </div>`
+        </li>`
     ).join('');
 
     gallery.innerHTML = markup;
     lightbox.refresh();
 };
+
+

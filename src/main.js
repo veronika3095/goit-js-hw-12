@@ -3,11 +3,7 @@ import { renderGallery } from './js/render-functions.js';
 import iziToast from 'izitoast';
 
 const searchForm = document.querySelector('.search-form');
-const loadMoreBtn = document.createElement('button');
-loadMoreBtn.textContent = "Load more";
-loadMoreBtn.classList.add('load-more', 'hidden');
-document.body.appendChild(loadMoreBtn);
-
+const loadMoreBtn = document.querySelector('.load-more');
 const loader = document.querySelector('.loader');
 let query = '';
 let currentImages = [];
@@ -23,7 +19,10 @@ searchForm.addEventListener('submit', async (event) => {
 
     resetPage();
     loadMoreBtn.classList.add('hidden');
-    currentImages = []; 
+    currentImages = [];
+
+    document.querySelector('.gallery').innerHTML = ''; 
+
     await loadImages();
 });
 
@@ -34,13 +33,8 @@ loadMoreBtn.addEventListener('click', async () => {
 
 const loadImages = async () => {
     try {
-        loader.classList.remove('hidden'); // Показуємо завантажувач
+        loader.classList.remove('hidden'); 
         const images = await fetchImages(query);
-        
-        // Очищуємо галерею перед відображенням нових зображень
-        if (currentImages.length === 0) {
-            document.querySelector('.gallery').innerHTML = ''; 
-        }
 
         if (images.length === 0) {
             iziToast.error({ message: "Sorry, there are no images matching your search query. Please try again!" });
@@ -67,7 +61,7 @@ const loadImages = async () => {
         console.error(error);
         iziToast.error({ message: "Error fetching images." });
     } finally {
-        loader.classList.add('hidden'); // Приховуємо завантажувач
+        loader.classList.add('hidden');
     }
 };
 
